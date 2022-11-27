@@ -8,7 +8,7 @@ Route<dynamic> onGenerate(RouteSettings settings) {
   switch (settings.name) {
     case RoutesName.loginPageRoute:
       return MaterialPageRoute(
-        builder: (_) => const LoginPage(),
+        builder: (_) => const AuthPage(),
         settings: settings
       );
     case RoutesName.bottomNavBarRoute:
