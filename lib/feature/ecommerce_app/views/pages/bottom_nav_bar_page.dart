@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/views/pages/home_page.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/views/pages/profile_page.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class BottomNavBarPage extends StatefulWidget {
@@ -12,26 +13,16 @@ class BottomNavBarPage extends StatefulWidget {
 
 class _BottomNavBarPageState extends State<BottomNavBarPage> {
   final _bottomNavbarController = PersistentTabController();
-
   List<Widget> _buildScreens() {
     return [
       const HomePage(),
-
-      Container(
-        color: Colors.red,
-      ),
-      Container(
-        color: Colors.grey,
-      ),
-      Container(
-        color: Colors.
-        cyanAccent,
-      ),
-      Container(   color: Colors.brown,),
-
+      Container(color: Colors.red),
+      Container(color: Colors.grey),
+      Container(color: Colors.cyanAccent),
+      // Container(color: Colors.brown),
+      const ProfilePage(),
     ];
   }
-
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
@@ -66,7 +57,6 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
       ),
     ];
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

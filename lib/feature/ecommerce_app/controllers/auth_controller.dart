@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ecommerce/core/utils/enums/auth_enums.dart';
-
 import '../services/auth.dart';
 
 class AuthController with ChangeNotifier {
@@ -22,12 +21,13 @@ class AuthController with ChangeNotifier {
         await auth.loginWithEmailAndPassword(email: email, password: password);
       }else{
         await auth.signUpWithEmailAndPassword(email: email, password: password);
-      }
-
-
-    }catch (e){
+      }}catch (e){
       rethrow;
     }
+  }
+
+  void signOut()async {
+    await auth.signOut();
   }
 
   void toggleFormType() {
@@ -45,7 +45,8 @@ class AuthController with ChangeNotifier {
 
   void updatePassword(String password) => copyWith(password: password);
 
-  void copyWith({
+  void copyWith(
+      {
     String? email,
     String? password,
     AuthFormType? authFormType,

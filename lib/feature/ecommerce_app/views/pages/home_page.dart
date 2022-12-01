@@ -4,13 +4,12 @@ import 'package:flutter_ecommerce/core/utils/app_strings/app_strings.dart';
 import 'package:flutter_ecommerce/core/utils/app_strings/images_path.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/views/widgets/list_item_home.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../models/product_model.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-// TODO: Temp code till refactor to a separate class with a separate  context
+  // TODO: Temp code till refactor to a separate class with a separate  context
   Widget _buildHeaderOfList(
     BuildContext context, {
     required String title,

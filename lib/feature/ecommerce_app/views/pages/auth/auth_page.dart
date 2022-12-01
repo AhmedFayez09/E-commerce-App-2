@@ -3,12 +3,9 @@ import 'package:flutter_ecommerce/core/utils/app_strings/app_strings.dart';
 import 'package:flutter_ecommerce/core/utils/app_strings/images_path.dart';
 import 'package:flutter_ecommerce/core/utils/enums/auth_enums.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/controllers/auth_controller.dart';
-import 'package:flutter_ecommerce/feature/ecommerce_app/services/auth.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/views/widgets/main_button.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../../../../core/utils/routes/routes_name.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -35,10 +32,9 @@ class _AuthPageState extends State<AuthPage> {
     try {
       await model.submit();
       if (!mounted) return;
-      Navigator.pushNamed(context, RoutesName.bottomNavBarRoute);
+      // Navigator.pushNamed(context, RoutesName.bottomNavBarRoute);
     } catch (e) {
       //// TODO : WE WILL REFACTOR THIS CODE INTO ANOTHER WIDGET
-
       showDialog(
           context: context,
           builder: (_) => AlertDialog(
@@ -63,7 +59,6 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthBase>(context);
     return Consumer<AuthController>(
       builder: (_, model, __) {
         return Scaffold(
