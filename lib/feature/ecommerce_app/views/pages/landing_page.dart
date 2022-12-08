@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/controllers/auth_controller.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/controllers/database_controller.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/services/auth.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/views/pages/auth/auth_page.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/views/pages/bottom_nav_bar_page.dart';
@@ -19,12 +20,20 @@ class LandingPage extends StatelessWidget {
             final user = snapshot.data;
             if (user == null) {
               return ChangeNotifierProvider<AuthController>(
-                  create: (_) => AuthController(auth: auth),
-                  child: const AuthPage());
+                create: (_) => AuthController(auth: auth),
+                child: const AuthPage(),
+              );
             }
-            return const BottomNavBarPage();
+            return ChangeNotifierProvider<AuthController>(
+              create: (_)=> AuthController(auth: auth),
+              child: Provider<Database>(
+                create: (_) => FirestoreDatabase(user.uid),
+                child: const BottomNavBarPage(),
+              ),
+            );
           }
-          // TODO : WILL ME MAKE PAGE FOR LOODING
+          // ignore: todo
+          // TODO  : WILL ME MAKE PAGE FOR LOODING
           return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),

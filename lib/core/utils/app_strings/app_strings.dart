@@ -13,6 +13,10 @@ class AppStrings{
   //// Home Page
 static const String seeAll = 'See All';
 
+///// Api PAth
+static  String productColloctionName ()=> 'products';
+
+
 
 
 

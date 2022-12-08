@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/utils/app_colors.dart';
 import 'package:flutter_ecommerce/core/utils/app_strings/app_strings.dart';
 import 'package:flutter_ecommerce/core/utils/app_strings/images_path.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/controllers/database_controller.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/views/widgets/list_item_home.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../models/product_model.dart';
 
@@ -47,6 +49,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Database database = Provider.of<Database>(context);
     return ListView(
       children: [
         Stack(
@@ -88,19 +91,31 @@ class HomePage extends StatelessWidget {
                 title: 'Sale',
                 description: 'Super Summer Sale!!',
               ),
-              SizedBox(
-                height: 3.h,
-              ),
+              SizedBox(height: 3.h),
               SizedBox(
                 height: 35.h,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: dummyProducts
-                      .map((e) => Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 3.w),
-                            child: ListItemHome(productModel: e),
-                          ))
-                      .toList(),
+                child: StreamBuilder<List<ProductModel>>(
+                  stream: database.salesProductsStream(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      final product = snapshot.data;
+                      if (product == null || product.isEmpty) {
+                        return const Center(
+                          child: Text('No Data Available!'),
+                        );
+                      }
+                      return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: product.length,
+                          itemBuilder: (_, i) => Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                child: ListItemHome(productModel: product[i]),
+                              ));
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
               )
             ],
@@ -115,19 +130,33 @@ class HomePage extends StatelessWidget {
                 title: 'New',
                 description: 'Super New Products!!',
               ),
-              SizedBox(
-                height: 3.h,
-              ),
+              SizedBox(height: 3.h),
               SizedBox(
                 height: 35.h,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: dummyProducts
-                      .map((e) => Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 3.w),
-                            child: ListItemHome(productModel: e),
-                          ))
-                      .toList(),
+                child: StreamBuilder(
+                  stream: database.newProductsStream(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      final product = snapshot.data;
+
+                      if (product == null || product.isEmpty) {
+                        return const Center(
+                          child: Text('No Data Available!'),
+                        );
+                      }
+                      return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: product.length,
+                          itemBuilder: (_, i) => Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                child: ListItemHome(productModel: product[i]),
+                              ));
+                    }
+
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
               )
             ],
