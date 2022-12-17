@@ -5,9 +5,10 @@ import 'package:flutter_ecommerce/core/utils/routes/routes_name.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import 'core/utils/app_colors.dart';
 import 'feature/ecommerce_app/services/auth.dart';
 
-Future<void> main()async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -21,13 +22,21 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return Provider<AuthBase>(
-          create: (_)=> Auth(),
+          create: (_) => Auth(),
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Ecommerce App',
             theme: ThemeData(
               scaffoldBackgroundColor: const Color(0xFFE5E5E5),
               primaryColor: Colors.red,
+              appBarTheme: const AppBarTheme(
+                 elevation: 0,
+                backgroundColor: AppColors.wColor,
+                centerTitle: true,
+                iconTheme: IconThemeData(
+                  color: AppColors.blackColor,
+                ),
+              ),
               inputDecorationTheme: InputDecorationTheme(
                 labelStyle: Theme.of(context).textTheme.subtitle1,
                 focusedBorder: OutlineInputBorder(
