@@ -16,12 +16,13 @@ class MainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        
+        shape: hasCirularBorder
+            ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.sp))
+            : null,
         padding: EdgeInsets.symmetric(vertical: 2.h),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       onPressed: onPressed,
-      
       child: Text(
         text,
       ),

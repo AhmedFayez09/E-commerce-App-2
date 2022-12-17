@@ -105,6 +105,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                   SizedBox(height: 2.h),
                   MainButton(
+                    hasCirularBorder: true,
                     onPressed: () {},
                     text: 'Add to Card',
                   )

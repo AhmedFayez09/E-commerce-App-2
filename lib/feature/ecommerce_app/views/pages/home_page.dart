@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 3.h),
               SizedBox(
-                height: 35.h,
+                height: 36.h,
                 child: StreamBuilder<List<ProductModel>>(
                   stream: database.salesProductsStream(),
                   builder: (context, snapshot) {
@@ -110,7 +110,8 @@ class HomePage extends StatelessWidget {
                           itemBuilder: (_, i) => Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 3.w),
                                 child: ListItemHome(productModel: product[i]),
-                              ));}
+                              ));
+                    }
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -131,7 +132,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 3.h),
               SizedBox(
-                height: 35.h,
+                height: 36.h,
                 child: StreamBuilder(
                   stream: database.newProductsStream(),
                   builder: (context, snapshot) {
@@ -157,7 +158,8 @@ class HomePage extends StatelessWidget {
                     );
                   },
                 ),
-              )
+              ),
+              SizedBox(height: 3.h),
             ],
           ),
         ),
