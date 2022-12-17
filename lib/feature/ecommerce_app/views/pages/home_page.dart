@@ -110,8 +110,7 @@ class HomePage extends StatelessWidget {
                           itemBuilder: (_, i) => Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 3.w),
                                 child: ListItemHome(productModel: product[i]),
-                              ));
-                    }
+                              ));}
                     return const Center(
                       child: CircularProgressIndicator(),
                     );

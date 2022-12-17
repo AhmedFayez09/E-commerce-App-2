@@ -1,4 +1,3 @@
-import 'package:flutter_ecommerce/core/utils/app_strings/images_path.dart';
 
 class ProductModel {
   final String id;
@@ -47,82 +46,82 @@ class ProductModel {
   }
 }
 
-List<ProductModel> dummyProducts = [
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets2,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-  ProductModel(
-      id: '1',
-      title: 'T-shirt',
-      price: 300,
-      imgUrl: AppImagesPathNetwork.tempProductAssets1,
-      category: 'Clothes',
-      discountValue: 20),
-];
+// List<ProductModel> dummyProducts = [
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets2,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+//   ProductModel(
+//       id: '1',
+//       title: 'T-shirt',
+//       price: 300,
+//       imgUrl: AppImagesPathNetwork.tempProductAssets1,
+//       category: 'Clothes',
+//       discountValue: 20),
+// ];
