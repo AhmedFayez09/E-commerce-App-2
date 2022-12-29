@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Ecommerce App',
+            // TODO: Refactor this theme away from the main file 
             theme: ThemeData(
               scaffoldBackgroundColor: const Color(0xFFE5E5E5),
               primaryColor: Colors.red,
