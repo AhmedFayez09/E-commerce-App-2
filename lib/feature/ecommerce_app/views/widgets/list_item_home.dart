@@ -67,6 +67,7 @@ class _ListItemHomeState extends State<ListItemHome> {
                     ),
                   ),
                 ),
+                 // TODO : Create one component for the favorate button
                 Positioned(
                   bottom: -2.h,
                   right: 0,
