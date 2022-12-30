@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_ecommerce/core/utils/constants.dart';
 import 'package:flutter_ecommerce/core/utils/enums/auth_enums.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/controllers/database_controller.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/models/user_data.dart';
 import '../services/auth.dart';
 
 class AuthController with ChangeNotifier {
@@ -7,6 +10,8 @@ class AuthController with ChangeNotifier {
   String email;
   String password;
   AuthFormType authFormType;
+  //TODO : It's not best practice thing but it's temporary
+  final Database database = FirestoreDatabase('123');
 
   AuthController({
     required this.auth,
@@ -15,18 +20,25 @@ class AuthController with ChangeNotifier {
     this.authFormType = AuthFormType.login,
   });
 
-  Future<void> submit()async{
-    try{
-      if(authFormType == AuthFormType.login){
+  Future<void> submit() async {
+    try {
+      if (authFormType == AuthFormType.login) {
         await auth.loginWithEmailAndPassword(email: email, password: password);
-      }else{
+      } else {
         await auth.signUpWithEmailAndPassword(email: email, password: password);
-      }}catch (e){
+        await database.setUserData(
+          UserData(
+            uid: documentIdFromLocalData(),
+            email: email,
+          ),
+        );
+      }
+    } catch (e) {
       rethrow;
     }
   }
 
-  void signOut()async {
+  void signOut() async {
     await auth.signOut();
   }
 
@@ -45,8 +57,7 @@ class AuthController with ChangeNotifier {
 
   void updatePassword(String password) => copyWith(password: password);
 
-  void copyWith(
-      {
+  void copyWith({
     String? email,
     String? password,
     AuthFormType? authFormType,
