@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/utils/app_colors.dart';
+import 'package:flutter_ecommerce/core/utils/constants.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/controllers/database_controller.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/models/add_to_cart_model.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/models/product_model.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/views/widgets/drop_down_menu.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/views/widgets/main_button.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/views/widgets/main_dialog.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+// ignore: must_be_immutable
 class ProductDetails extends StatefulWidget {
   ProductDetails({super.key, required this.productModel});
   ProductModel productModel;
@@ -12,13 +18,35 @@ class ProductDetails extends StatefulWidget {
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
 }
+
 class _ProductDetailsState extends State<ProductDetails> {
   bool isFavorite = false;
   late String dropdownValue;
-  
+
+  Future<void> _addToCart(Database database) async {
+    try {
+      final addToCartProduct = AddToCartModel(
+        productId: widget.productModel.id,
+        id: documentIdFromLocalData(),
+        title: widget.productModel.title,
+        price: widget.productModel.price,
+        imUrl: widget.productModel.imgUrl,
+        size: dropdownValue,
+      );
+      await database.addToCart(addToCartProduct);
+    } catch (e) {
+      return MainDialog(
+        context: context,
+        title: 'Error',
+        content: "Couldn't adding to the cart, please try again",
+      ).showAlertDialog();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    
+    final database = Provider.of<Database>(context,listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -50,7 +78,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        
                         height: 6.5.h,
                         width: 30.w,
                         child: DropdownButtonComponant(
@@ -63,6 +90,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           },
                         ),
                       ),
+                      // ignore: todo
                       // TODO : Create one component for the favorate button
                       Align(
                         alignment: Alignment.topRight,
@@ -128,7 +156,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   SizedBox(height: 2.h),
                   MainButton(
                     hasCirularBorder: true,
-                    onPressed: () {},
+                    onPressed: ()  =>  _addToCart(database),
                     text: 'Add to Card',
                   )
                 ],

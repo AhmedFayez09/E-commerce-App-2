@@ -25,10 +25,11 @@ class AuthController with ChangeNotifier {
       if (authFormType == AuthFormType.login) {
         await auth.loginWithEmailAndPassword(email: email, password: password);
       } else {
-        await auth.signUpWithEmailAndPassword(email: email, password: password);
+        
+      final user =  await auth.signUpWithEmailAndPassword(email: email, password: password);
         await database.setUserData(
           UserData(
-            uid: documentIdFromLocalData(),
+            uid: user!.uid ?? documentIdFromLocalData(),
             email: email,
           ),
         );

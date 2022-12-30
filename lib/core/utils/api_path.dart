@@ -1,4 +1,6 @@
-class ApiPath{
-  static  String productColloctionName ()=> 'products/';
-  static  String user (String uid)=> 'users/$uid';
+class ApiPath {
+  static String productColloctionName() => 'products/';
+  static String user(String uid) => 'users/$uid';
+  static String addToCart(String uid, String addToCartId) =>
+      'users/$uid/cart/$addToCartId';
 }

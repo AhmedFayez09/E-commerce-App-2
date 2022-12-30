@@ -9,8 +9,7 @@ class FireStoreServices {
 
   Future<void> setData({
     required String path,
-    required Map<String, dynamic> data,
-  }) async {
+    required Map<String, dynamic> data,}) async {
     final reference = _fireStore.doc(path);
     debugPrint('Request Data : $data');
     await reference.set(data);
@@ -45,13 +44,13 @@ class FireStoreServices {
       query = queryBuilder(query);
     }
     final snapShots = query.snapshots();
-  return  snapShots.map((snapShot) {
-      final result =  snapShot.docs
+    return snapShots.map((snapShot) {
+      final result = snapShot.docs
           .map((snapshot) =>
               builder(snapshot.data() as Map<String, dynamic>, snapshot.id))
           .where((value) => value != null)
           .toList();
-      if(sort != null){
+      if (sort != null) {
         result.sort(sort);
       }
       return result;
