@@ -25,11 +25,16 @@ class LandingPage extends StatelessWidget {
               );
             }
             return ChangeNotifierProvider<AuthController>(
-              create: (_)=> AuthController(auth: auth),
+              create: (_) => AuthController(auth: auth),
               child: Provider<Database>(
                 create: (_) => FirestoreDatabase(user.uid),
                 child: const BottomNavBarPage(),
               ),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
           }
           // ignore: todo

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/utils/app_colors.dart';
 import 'package:flutter_ecommerce/core/utils/routes/routes_name.dart';
+import 'package:flutter_ecommerce/feature/ecommerce_app/controllers/database_controller.dart';
 import 'package:flutter_ecommerce/feature/ecommerce_app/models/product_model.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class ListItemHome extends StatefulWidget {
   final ProductModel productModel;
   bool isFavorite;
-   ListItemHome({
+  ListItemHome({
     Key? key,
     required this.productModel,
     this.isFavorite = false,
@@ -21,9 +23,16 @@ class ListItemHome extends StatefulWidget {
 class _ListItemHomeState extends State<ListItemHome> {
   @override
   Widget build(BuildContext context) {
+    final database = Provider.of<Database>(context);
     return InkWell(
-      onTap: () => Navigator.of(context, rootNavigator: true)
-          .pushNamed(RoutesName.productDetailsRoute, arguments: widget.productModel),
+      onTap: () => Navigator.of(context, rootNavigator: true).pushNamed(
+        RoutesName.productDetailsRoute,
+        // TODO: we need to refactor to create models for the arguments
+        arguments: {
+          'product': widget.productModel,
+          'database': database,
+        },
+      ),
       child: DecoratedBox(
         decoration: const BoxDecoration(),
         child: Column(
@@ -67,7 +76,7 @@ class _ListItemHomeState extends State<ListItemHome> {
                     ),
                   ),
                 ),
-                 // TODO : Create one component for the favorate button
+                // TODO : Create one component for the favorate button
                 Positioned(
                   bottom: -2.h,
                   right: 0,
@@ -80,7 +89,9 @@ class _ListItemHomeState extends State<ListItemHome> {
                     mini: true,
                     backgroundColor: AppColors.wColor,
                     child: Icon(
-                      widget.isFavorite ? Icons.favorite : Icons.favorite_border,
+                      widget.isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
                       color: AppColors.greyColor,
                     ),
                   ),

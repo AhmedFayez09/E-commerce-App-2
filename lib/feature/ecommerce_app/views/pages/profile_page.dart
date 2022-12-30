@@ -19,9 +19,12 @@ class ProfilePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              MainButton(onPressed: () {
-                model.signOut();
-              }, text: 'Sign Out')
+              MainButton(
+                onPressed: () {
+                  model.signOut();
+                },
+                text: 'Sign Out',
+              )
             ],
           );
         },
