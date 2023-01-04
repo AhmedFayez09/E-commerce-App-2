@@ -20,6 +20,7 @@ class FirestoreDatabase implements Database {
 
   @override
   Stream<List<ProductModel>> salesProductsStream() =>
+  
       _service.collectionsStream(
           path: ApiPath.productColloctionName(),
           builder: (data, documentId) =>

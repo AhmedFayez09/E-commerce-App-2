@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthBase {
   User? get currentUser;
-  Stream<User?>  authStateChanges();
-  Future<User?> loginWithEmailAndPassword({required String email, required String password});
-  Future<User?> signUpWithEmailAndPassword({required String email, required String password});
-  Future<void>signOut();
+  Stream<User?> authStateChanges();
+  Future<User?> loginWithEmailAndPassword(
+      {required String email, required String password});
+  Future<User?> signUpWithEmailAndPassword(
+      {required String email, required String password});
+  Future<void> signOut();
 }
 
 class Auth implements AuthBase {
@@ -20,6 +22,7 @@ class Auth implements AuthBase {
     );
     return userAuth.user;
   }
+
   @override
   Future<User?> signUpWithEmailAndPassword(
       {required String email, required String password}) async {
@@ -35,52 +38,5 @@ class Auth implements AuthBase {
   User? get currentUser => _firebaseAuth.currentUser;
 
   @override
-  Future<void> signOut()async =>await _firebaseAuth.signOut();
+  Future<void> signOut() async => await _firebaseAuth.signOut();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
