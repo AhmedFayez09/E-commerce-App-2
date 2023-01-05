@@ -9,7 +9,8 @@ class FireStoreServices {
 
   Future<void> setData({
     required String path,
-    required Map<String, dynamic> data,}) async {
+    required Map<String, dynamic> data,
+  }) async {
     final reference = _fireStore.doc(path);
     debugPrint('Request Data : $data');
     await reference.set(data);

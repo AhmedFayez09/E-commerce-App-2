@@ -18,6 +18,7 @@ class LandingPage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             final user = snapshot.data;
+            
             if (user == null) {
               return ChangeNotifierProvider<AuthController>(
                 create: (_) => AuthController(auth: auth),
